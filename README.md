@@ -3,11 +3,11 @@
 <!-- TOC -->
 
 - [Virtual User SID Creation and SQL Login](#virtual-user-sid-creation-and-sql-login)
-    - [References](#references)
-    - [Examples](#examples)
-    - [Debug with Visual Studio.](#debug-with-visual-studio)
-    - [Get a Token](#get-a-token)
-    - [Assign to Login and user on SSMS](#assign-to-login-and-user-on-ssms)
+  - [References](#references)
+  - [Examples](#examples)
+  - [Debug with Visual Studio.](#debug-with-visual-studio)
+  - [Get a Token](#get-a-token)
+  - [Assign to Login and user on SSMS](#assign-to-login-and-user-on-ssms)
 
 <!-- /TOC -->
 
@@ -28,6 +28,7 @@ criteria.
 * [Creating your own Virtual Service Accounts](https://www.tiraniddo.dev/2020/10/creating-your-own-virtual-service.html)
 * [Virtual Service Accounts](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-service-accounts#virtual-accounts)
 * [LogonUserExEx](https://learn.microsoft.com/en-us/windows/win32/secauthn/logonuserexexw)
+* [PSGetSid](https://webhostinggeeks.com/howto/how-to-check-the-windows-sid-using-psgetsid/)
 
 ## Examples
 
@@ -166,6 +167,26 @@ $token
 # ObjectName                      : ABC\User - 00000002-25F9186C
 
 ```
+
+Get the user via PsGetSid (Mark's tool)
+```powershell
+# Install without checksum check
+choco install psgetsid /y --ignore-checksums
+
+# Get SID
+psgetsid ABC\User
+
+# SID for ABC\User:
+# S-1-5-101-1-2-3
+
+psgetsid ABC
+
+# SID for ABC\ABC:
+# S-1-5-101
+```
+
+![Success](_images/psgetsid-lkup.png)
+
 
 ## Assign to Login and user on SSMS
 
